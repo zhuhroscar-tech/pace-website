@@ -9,8 +9,14 @@
   opacity:0;
   transform:translateY(18px);
   transition:opacity .6s var(--ease), transform .6s var(--ease);
+  /* Safety net: if JS is slow/blocked, content still becomes visible
+     after 1.2s rather than staying hidden indefinitely. */
+  animation:reveal-fallback 0s 1.2s forwards;
 }
-[data-reveal].is-visible{opacity:1; transform:translateY(0);}
+@keyframes reveal-fallback{
+  to{opacity:1; transform:translateY(0);}
+}
+[data-reveal].is-visible{opacity:1; transform:translateY(0); animation:none;}
 [data-reveal="1"]{transition-delay:.05s;}
 [data-reveal="2"]{transition-delay:.12s;}
 [data-reveal="3"]{transition-delay:.19s;}

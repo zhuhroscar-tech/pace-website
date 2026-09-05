@@ -82,6 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
+    // Force an immediate check in case the observer's first callback is
+    // delayed (some browsers defer it slightly past initial paint) —
+    // guarantees above-the-fold content is never left invisible.
+    requestAnimationFrame(() => {
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('is-visible');
+        }
+      });
+    });
   } else {
     document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
   }
