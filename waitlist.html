@@ -93,19 +93,24 @@
     <div class="waitlist-block" data-reveal="1">
       <div class="waitlist-form-wrap">
         <!--
-          GOOGLE FORM EMBED — replace the src below with your
-          real Google Form's embed URL once created. See
-          Downloads/pace-google-form-setup.md for exact field
-          setup instructions.
+          WAITLIST FORM STATUS: intentionally not embedded yet.
+          Rationale (see rationale table): an iframe pointed at a
+          placeholder URL is a broken/dead element, which the build
+          standard here treats as worse than an honest "not live yet"
+          state. Swap this block for the real Google Form iframe
+          (see Downloads/pace-google-form-setup.md) the moment the
+          form exists — do not ship a fake src in the meantime.
         -->
-        <iframe
-          src="PASTE_GOOGLE_FORM_EMBED_URL_HERE"
-          title="Pace beta waitlist signup form"
-          loading="lazy">
-          Loading form…
-        </iframe>
-        <p style="font-size:12.5px;color:var(--text-faint);margin-top:12px;">
-          Having trouble with the embedded form? <a href="mailto:hello@paceapp.dev" style="text-decoration:underline;">Email us directly</a> instead.
+        <div class="waitlist-pending" role="status">
+          <div class="waitlist-pending-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M10 2L3 5v5c0 4.5 3 7.5 7 8.5 4-1 7-4 7-8.5V5l-7-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Signup form is coming very soon</h3>
+          <p>We're finalizing the beta signup form right now. In the meantime, email us directly and we'll add you to the list by hand &mdash; same result, one extra step.</p>
+          <a class="btn btn-primary" href="mailto:huairui.z@wustl.edu?subject=Pace%20beta%20waitlist">Email to join the waitlist</a>
+        </div>
+        <p style="font-size:12.5px;color:var(--text-faint);margin-top:16px;">
+          Prefer not to email? Check back soon &mdash; the embedded form will replace this notice as soon as it's live.
         </p>
       </div>
     </div>
@@ -169,7 +174,7 @@
       <div class="footer-col">
         <h4>Get started</h4>
         <a href="waitlist.html">Join the beta</a>
-        <a href="mailto:hello@paceapp.dev">Email us</a>
+        <a href="mailto:huairui.z@wustl.edu">Email us</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
