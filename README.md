@@ -6,6 +6,8 @@ Marketing site for **Pace** — a privacy-first, adaptive study companion for co
 
 This repository is the source code for Pace's public marketing website — the pages someone sees when they look up the Pace app, read about what it does, check pricing, and join the waitlist. It's a set of plain HTML/CSS/JS pages, not the Pace app itself.
 
+![pace-website homepage screenshot](docs/images/example-output.png)
+
 ```text
 Homepage        → hero pitch, live demo, differentiators, pricing, "Join the waitlist" CTA
 about.html       → founder story and product approach
