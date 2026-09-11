@@ -2,6 +2,18 @@
 
 Marketing site for **Pace** — a privacy-first, adaptive study companion for college students, in beta.
 
+## Simple explanation
+
+This repository is the source code for Pace's public marketing website — the pages someone sees when they look up the Pace app, read about what it does, check pricing, and join the waitlist. It's a set of plain HTML/CSS/JS pages, not the Pace app itself.
+
+```text
+Homepage        → hero pitch, live demo, differentiators, pricing, "Join the waitlist" CTA
+about.html       → founder story and product approach
+pricing.html     → beta pricing and the planned Pro tier
+faq.html         → frequently asked questions and disclaimers
+waitlist.html    → waitlist signup form
+```
+
 Live: https://zhuhroscar-tech.github.io/pace-website/ (once GitHub Pages is enabled — see below)
 
 ## Structure
