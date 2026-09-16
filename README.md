@@ -1,76 +1,53 @@
 # Pace Website
 
-Marketing site for **Pace** — a privacy-first, adaptive study companion for college students, in beta.
+[![English](https://img.shields.io/badge/English-555555?style=flat)](README.md) [![简体中文](https://img.shields.io/badge/简体中文-555555?style=flat)](README.zh-CN.md)
 
-## Simple explanation
+The public marketing website for Pace, a study-companion project for college students. This repository contains the website and an illustrative homepage demo—not the full Pace application, a medical tool, or a production signup backend.
 
-This repository is the source code for Pace's public marketing website — the pages someone sees when they look up the Pace app, read about what it does, check pricing, and join the waitlist. It's a set of plain HTML/CSS/JS pages, not the Pace app itself.
+![Pace homepage](docs/images/example-output.png)
 
-![pace-website homepage screenshot](docs/images/example-output.png)
+## Preview locally
 
-```text
-Homepage        → hero pitch, live demo, differentiators, pricing, "Join the waitlist" CTA
-about.html       → founder story and product approach
-pricing.html     → beta pricing and the planned Pro tier
-faq.html         → frequently asked questions and disclaimers
-waitlist.html    → waitlist signup form
+Requires a modern browser and Python 3 for the preview server and optional page generation. There are no npm dependencies or framework build steps.
+
+```bash
+git clone https://github.com/zhuhroscar-tech/pace-website.git
+cd pace-website
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Live: https://zhuhroscar-tech.github.io/pace-website/ (once GitHub Pages is enabled — see below)
+Open `http://127.0.0.1:8000`. The committed HTML is ready to serve; rebuilding is only necessary after changing generator content or shared partials.
 
-## Structure
+## What's included
 
+- Homepage with an interactive study-session illustration and links to product information.
+- About, pricing, FAQ, waitlist, and four feature pages.
+- Shared navigation, mobile menu, FAQ accordion, and scroll-reveal effects.
+- Plain HTML/CSS/JavaScript, plus Python helpers that generate secondary pages.
+
+The waitlist currently offers an **email link**, with an explicit notice that the embedded signup form is not live. There is no working form backend to configure in this repository. Planned Pro features are product plans, not implemented application features here.
+
+## Edit the right source
+
+| Change | Source |
+| --- | --- |
+| Homepage content | `index.html` (hand-authored) |
+| Shared header/footer | `src/partials/` |
+| About, pricing, FAQ, waitlist copy | `build_pages.py` |
+| Feature-page copy | `build_features.py` |
+| Styles and browser behavior | `assets/css/`, `assets/js/site.js` |
+
+After editing generated-page sources or partials:
+
+```bash
+python3 build_features.py
+python3 build_pages.py
 ```
-index.html                     Homepage (hero, demo, differentiation, trust, founder, pricing, CTA)
-about.html                     Founder story + product approach
-pricing.html                   Beta pricing + planned Pro tier
-faq.html                       FAQ, including the medical-claims disclaimer
-waitlist.html                  Waitlist signup (Google Form embed)
-404.html                       Custom not-found page
-features/
-  adaptive-sessions.html
-  attention-signals.html
-  real-time-prompts.html
-  privacy.html
-assets/
-  css/base.css                 Design system: tokens, layout, nav, buttons, footer
-  css/components.css           Section-specific components (hero, simulator, FAQ, pricing, etc.)
-  js/site.js                   Shared JS: mobile nav, dropdown, FAQ accordion, scroll-reveal
-src/
-  partials/header.html         Shared header (edit once, rebuild to propagate)
-  partials/footer.html         Shared footer
-build.py                       Templating engine — injects partials, fixes relative paths per page depth
-build_features.py              Generates the 4 feature pages
-build_pages.py                 Generates FAQ / Pricing / About / Waitlist
-robots.txt / sitemap.xml       Basic SEO
-```
 
-## Editing content
+Review the generated HTML before committing. The hand-authored homepage is not rebuilt by these commands, so keep its navigation consistent separately. To add a real embedded waitlist form, replace the pending block in `build_pages.py` and regenerate; do not rely on a local setup file outside this repository.
 
-1. Edit `src/partials/header.html` or `footer.html` for site-wide nav/footer changes.
-2. Edit `build_features.py` / `build_pages.py` for page copy.
-3. Run:
-   ```bash
-   python3 build_features.py
-   python3 build_pages.py
-   ```
-4. `index.html` is currently hand-authored (not templated) — edit it directly.
+## Deployment and checks
 
-## Before shipping: finish the waitlist form
+Serve the repository root with any static host. For GitHub Pages, select **Deploy from a branch → main → /(root)**. A configured deployment uses `https://<username>.github.io/pace-website/`; this README does not assume Pages is enabled.
 
-`waitlist.html` has a placeholder `PASTE_GOOGLE_FORM_EMBED_URL_HERE` iframe src.
-See `~/Downloads/pace-google-form-setup.md` for exact Google Form field setup,
-then replace that placeholder with your form's real embed URL and rebuild
-(`python3 build_pages.py`).
-
-## Deploying to GitHub Pages
-
-1. Push this repo to GitHub (already done if you're reading this from the repo).
-2. In GitHub: **Settings → Pages → Source: Deploy from a branch → main / (root)**.
-3. Site will be live at `https://<username>.github.io/pace-website/`.
-
-## Design system
-
-- Colors: deep forest green `#1E4A46` (primary), amber `#D98F2B` (accent)
-- Fonts: Fraunces (headings), Inter (body)
-- All copy avoids medical/diagnostic claims per product positioning constraints.
+Before publishing, check mobile navigation, internal links, the demo, FAQ keyboard interaction, and the waitlist email action. Google Fonts are loaded externally. Keep medical disclaimers intact and distinguish product plans from shipped behavior.
