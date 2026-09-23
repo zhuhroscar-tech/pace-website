@@ -51,3 +51,17 @@ python3 build_pages.py
 任意静态托管服务均可提供仓库根目录。GitHub Pages 可选择 **Deploy from a branch → main → /(root)**。配置后地址为 `https://<username>.github.io/pace-website/`；本文不假定 Pages 已启用。
 
 发布前检查移动端导航、内部链接、首页演示、FAQ 键盘交互及候补名单邮件链接。Google Fonts 从外部加载。请保留医疗免责声明，并明确区分规划中的功能和已实现的行为。
+
+提交前运行仓库契约检查：
+
+```bash
+python3 build_features.py
+python3 build_pages.py
+python3 -m unittest discover -s tests -v
+```
+
+GitHub Actions 会运行同样的生成器与测试检查，并在生成后的 HTML 未提交时失败。
+
+## 许可证
+
+MIT License。见 [LICENSE](LICENSE)。
