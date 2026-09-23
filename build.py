@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 """
 Static site builder for Pace website.
-Injects shared header/footer partials into page bodies, adjusts
-relative asset/link paths based on page depth, and writes final
-static HTML files (no server-side templating needed — GitHub Pages
-just serves the output as-is).
 
-Usage: python3 build.py
-Reads:  src/pages/*.html  (page-specific <head> extras + <body> content)
-Writes: root-level *.html and features/*.html
+This module injects shared header/footer partials into page bodies,
+adjusts relative asset/link paths based on page depth, and writes final
+static HTML files that GitHub Pages can serve directly.
+
+Do not run this module by itself. It exposes build_page() for the page
+generator scripts:
+
+    python3 build_features.py
+    python3 build_pages.py
+
+The homepage (index.html) is hand-authored and is not rebuilt by those
+commands.
 """
 import re
 from pathlib import Path
@@ -93,4 +98,4 @@ def build_page(slug: str, title: str, description: str, body_content: str,
     print(f"Built: {slug} ({len(html)} bytes)")
 
 if __name__ == "__main__":
-    print("Import this module and call build_page(...) per page — see build_all.py")
+    print("Import this module and call build_page(...) per page — see build_features.py and build_pages.py")

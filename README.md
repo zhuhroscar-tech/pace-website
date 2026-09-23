@@ -51,3 +51,17 @@ Review the generated HTML before committing. The hand-authored homepage is not r
 Serve the repository root with any static host. For GitHub Pages, select **Deploy from a branch → main → /(root)**. A configured deployment uses `https://<username>.github.io/pace-website/`; this README does not assume Pages is enabled.
 
 Before publishing, check mobile navigation, internal links, the demo, FAQ keyboard interaction, and the waitlist email action. Google Fonts are loaded externally. Keep medical disclaimers intact and distinguish product plans from shipped behavior.
+
+Run the repository contract checks before committing:
+
+```bash
+python3 build_features.py
+python3 build_pages.py
+python3 -m unittest discover -s tests -v
+```
+
+GitHub Actions runs the same generator/test checks and fails if generated HTML is not committed.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
