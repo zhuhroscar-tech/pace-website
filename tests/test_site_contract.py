@@ -73,6 +73,16 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn("build_features.py", build_py)
         self.assertIn("build_pages.py", build_py)
 
+    def test_waitlist_copy_matches_email_only_signup_state(self):
+        waitlist_html = (ROOT / "waitlist.html").read_text(encoding="utf-8")
+        waitlist_source = (ROOT / "build_pages.py").read_text(encoding="utf-8")
+
+        self.assertIn("Email to join the waitlist", waitlist_html)
+        self.assertIn("Signup form is coming very soon", waitlist_html)
+        self.assertNotIn("Fill out the form below", waitlist_html)
+        self.assertNotIn("You submit the form", waitlist_html)
+        self.assertNotIn("Downloads/pace-google-form-setup.md", waitlist_source)
+
 
 if __name__ == "__main__":
     unittest.main()

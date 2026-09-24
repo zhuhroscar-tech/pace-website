@@ -202,7 +202,7 @@ build_page(
 build_page(
     slug="waitlist.html",
     title="Join the Beta — Pace",
-    description="Join the Pace beta waitlist — free, no credit card, takes 30 seconds.",
+    description="Join the Pace beta waitlist by email — free, no credit card, takes about 30 seconds.",
     depth=0,
     active_nav="waitlist.html",
     body_content="""
@@ -211,19 +211,19 @@ build_page(
     <div class="section-head center" data-reveal="0">
       <span class="eyebrow">Join the beta</span>
       <h2>Free during beta. Takes about 30 seconds.</h2>
-      <p class="lede">Fill out the form below and we'll reach out with access details and updates. No spam, no credit card, unsubscribe anytime.</p>
+      <p class="lede">Email us from this page and we'll reach out with access details and updates. No spam, no credit card, unsubscribe anytime.</p>
     </div>
 
     <div class="waitlist-block" data-reveal="1">
       <div class="waitlist-form-wrap">
         <!--
           WAITLIST FORM STATUS: intentionally not embedded yet.
-          Rationale (see rationale table): an iframe pointed at a
-          placeholder URL is a broken/dead element, which the build
-          standard here treats as worse than an honest "not live yet"
-          state. Swap this block for the real Google Form iframe
-          (see Downloads/pace-google-form-setup.md) the moment the
-          form exists — do not ship a fake src in the meantime.
+          Rationale: an iframe pointed at a placeholder URL is a
+          broken/dead element, which the build standard here treats as
+          worse than an honest "not live yet" state. Swap this block
+          for a real signup form the moment one exists, and keep the
+          fallback email path visible for users who do not want to use
+          an embedded third-party form.
         -->
         <div class="waitlist-pending" role="status">
           <div class="waitlist-pending-icon" aria-hidden="true">
@@ -234,7 +234,7 @@ build_page(
           <a class="btn btn-primary" href="mailto:huairui.z@wustl.edu?subject=Pace%20beta%20waitlist">Email to join the waitlist</a>
         </div>
         <p style="font-size:12.5px;color:var(--text-faint);margin-top:16px;">
-          Prefer not to email? Check back soon &mdash; the embedded form will replace this notice as soon as it's live.
+          Prefer not to email? Check back soon &mdash; a live signup form will replace this notice as soon as it's ready.
         </p>
       </div>
     </div>
@@ -248,8 +248,8 @@ build_page(
     <div class="steps">
       <div class="step" data-reveal="1">
         <div class="step-num">1</div>
-        <h4>You submit the form</h4>
-        <p>Just your name, email, and school — nothing else required.</p>
+        <h4>You send the waitlist email</h4>
+        <p>A short email is enough; include your school if you want student-specific updates.</p>
       </div>
       <div class="step" data-reveal="2">
         <div class="step-num">2</div>
