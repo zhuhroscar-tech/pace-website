@@ -5,7 +5,7 @@ a rationale table, an AI-generated-look self-audit, and a functional verificatio
 
 Site repo: `zhuhroscar-tech/pace-website`
 Live URL: **https://zhuhroscar-tech.github.io/pace-website/**
-Verified commit: `fc29751` (pushed and confirmed live)
+Originally verified commit: `fc29751` (pushed and confirmed live)
 
 ---
 
@@ -72,5 +72,5 @@ All checks below were run against either the local build or the **live deployed 
 ## 4. Outstanding / Flagged Items (not blockers, explicitly carried forward)
 
 - `[NEEDS REAL DATA]` — Testimonials/social proof section intentionally omitted per user confirmation (no real users yet). Revisit once real beta users exist.
-- Waitlist Google Form embed is intentionally NOT live yet (user confirmed this session: "leave it visibly marked 'form coming soon'"). Swap-in point is documented directly in `build_pages.py` and `waitlist.html` source comments — when the real form exists, replace the `.waitlist-pending` block with the iframe per `~/Downloads/pace-google-form-setup.md`.
+- Waitlist form embed is intentionally NOT live yet. Swap-in point is documented directly in `build_pages.py` and `waitlist.html` source comments — when the real form exists, replace the `.waitlist-pending` block with the production form embed and keep the fallback email path visible.
 - Domain: site currently lives at the GitHub Pages subdomain only (`zhuhroscar-tech.github.io/pace-website`) — no custom domain configured. Not requested as part of this task; flag if a custom domain is wanted for the pitch.

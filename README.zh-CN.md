@@ -52,6 +52,8 @@ python3 build_pages.py
 
 发布前检查移动端导航、内部链接、首页演示、FAQ 键盘交互及候补名单邮件链接。Google Fonts 从外部加载。请保留医疗免责声明，并明确区分规划中的功能和已实现的行为。
 
+发布说明维护在 [CHANGELOG.md](CHANGELOG.md)。已发布的源码快照见 [GitHub Releases](https://github.com/zhuhroscar-tech/pace-website/releases)。
+
 提交前运行仓库契约检查：
 
 ```bash

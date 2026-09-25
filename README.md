@@ -52,6 +52,8 @@ Serve the repository root with any static host. For GitHub Pages, select **Deplo
 
 Before publishing, check mobile navigation, internal links, the demo, FAQ keyboard interaction, and the waitlist email action. Google Fonts are loaded externally. Keep medical disclaimers intact and distinguish product plans from shipped behavior.
 
+Release notes are maintained in [CHANGELOG.md](CHANGELOG.md). Published source snapshots are available from [GitHub Releases](https://github.com/zhuhroscar-tech/pace-website/releases).
+
 Run the repository contract checks before committing:
 
 ```bash

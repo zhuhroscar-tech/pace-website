@@ -64,7 +64,33 @@ class SiteContractTests(unittest.TestCase):
 
     def test_repository_contract_files_exist(self):
         self.assertTrue((ROOT / "LICENSE").is_file())
+        self.assertTrue((ROOT / "CHANGELOG.md").is_file())
         self.assertTrue((ROOT / ".github/workflows/validate.yml").is_file())
+
+    def test_release_history_is_documented(self):
+        changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
+        workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
+
+        self.assertIn("## v0.1.2", changelog)
+        self.assertIn("## v0.1.1", changelog)
+        self.assertIn("## v0.1.0", changelog)
+        self.assertLess(changelog.index("## v0.1.2"), changelog.index("## v0.1.1"))
+        self.assertIn("CHANGELOG.md", readme)
+        self.assertIn("https://github.com/zhuhroscar-tech/pace-website/releases", readme)
+        self.assertIn("CHANGELOG.md", readme_zh)
+        self.assertIn("https://github.com/zhuhroscar-tech/pace-website/releases", readme_zh)
+        self.assertIn("tags: ['v*']", workflow)
+
+    def test_docs_do_not_point_at_machine_local_setup_files(self):
+        home_downloads = "~/" + "Downloads"
+        setup_file = "Downloads/" + "pace-google-form" + "-setup.md"
+        for path in ROOT.rglob("*"):
+            if path.is_file() and path.suffix in {".md", ".py", ".html", ".css", ".js", ".yml", ".yaml"}:
+                text = path.read_text(encoding="utf-8")
+                self.assertNotIn(home_downloads, text, str(path))
+                self.assertNotIn(setup_file, text, str(path))
 
     def test_builder_docs_match_current_entrypoints(self):
         build_py = (ROOT / "build.py").read_text(encoding="utf-8")
@@ -81,7 +107,7 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn("Signup form is coming very soon", waitlist_html)
         self.assertNotIn("Fill out the form below", waitlist_html)
         self.assertNotIn("You submit the form", waitlist_html)
-        self.assertNotIn("Downloads/pace-google-form-setup.md", waitlist_source)
+        self.assertNotIn("Downloads/" + "pace-google-form" + "-setup.md", waitlist_source)
 
 
 if __name__ == "__main__":
