@@ -33,7 +33,9 @@ PAGE_HEAD = """<!DOCTYPE html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="{canonical_url}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{canonical_url}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -86,7 +88,14 @@ def build_page(slug: str, title: str, description: str, body_content: str,
         # mark the matching top-level nav link as current
         header = header.replace(f'href="{prefix}{active_nav}"', f'href="{prefix}{active_nav}" aria-current="page"', 1)
 
-    html = PAGE_HEAD.format(title=title, description=description, prefix=prefix, extra_head=extra_head)
+    canonical_url = "https://zhuhroscar-tech.github.io/pace-website/" + ("" if slug == "index.html" else slug)
+    html = PAGE_HEAD.format(
+        title=title,
+        description=description,
+        canonical_url=canonical_url,
+        prefix=prefix,
+        extra_head=extra_head,
+    )
     html += header
     html += body_content
     html += footer

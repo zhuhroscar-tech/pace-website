@@ -2,6 +2,11 @@
 
 All notable changes to this repository are documented here.
 
+## v0.1.3 — 2026-09-26
+
+- Added canonical URLs and matching Open Graph URLs across all public HTML pages.
+- Added repository-contract coverage so public page metadata stays aligned with the GitHub Pages paths.
+
 ## v0.1.2 — 2026-09-25
 
 - Added release-history documentation in English and Chinese READMEs.

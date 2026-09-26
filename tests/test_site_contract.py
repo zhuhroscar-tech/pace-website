@@ -12,6 +12,9 @@ HTML_PAGES = sorted(
 
 HREF_RE = re.compile(r'\b(?:href|src)="([^"]+)"')
 ID_RE = re.compile(r'\bid="([^"]+)"')
+CANONICAL_RE = re.compile(r'<link rel="canonical" href="([^"]+)">')
+OG_URL_RE = re.compile(r'<meta property="og:url" content="([^"]+)">')
+SITE_BASE = "https://zhuhroscar-tech.github.io/pace-website/"
 
 
 def is_external(target: str) -> bool:
@@ -73,15 +76,28 @@ class SiteContractTests(unittest.TestCase):
         readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
         workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
 
+        self.assertIn("## v0.1.3", changelog)
         self.assertIn("## v0.1.2", changelog)
         self.assertIn("## v0.1.1", changelog)
         self.assertIn("## v0.1.0", changelog)
+        self.assertLess(changelog.index("## v0.1.3"), changelog.index("## v0.1.2"))
         self.assertLess(changelog.index("## v0.1.2"), changelog.index("## v0.1.1"))
         self.assertIn("CHANGELOG.md", readme)
         self.assertIn("https://github.com/zhuhroscar-tech/pace-website/releases", readme)
         self.assertIn("CHANGELOG.md", readme_zh)
         self.assertIn("https://github.com/zhuhroscar-tech/pace-website/releases", readme_zh)
         self.assertIn("tags: ['v*']", workflow)
+
+    def test_canonical_and_open_graph_urls_match_public_paths(self):
+        for page in HTML_PAGES:
+            relative = page.relative_to(ROOT).as_posix()
+            expected = SITE_BASE if relative == "index.html" else SITE_BASE + relative
+            html = page.read_text(encoding="utf-8")
+
+            canonical = CANONICAL_RE.findall(html)
+            og_url = OG_URL_RE.findall(html)
+            self.assertEqual([expected], canonical, f"{page} should declare exactly one canonical URL")
+            self.assertEqual([expected], og_url, f"{page} should declare exactly one og:url")
 
     def test_docs_do_not_point_at_machine_local_setup_files(self):
         home_downloads = "~/" + "Downloads"
