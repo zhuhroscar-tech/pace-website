@@ -76,10 +76,12 @@ class SiteContractTests(unittest.TestCase):
         readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
         workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
 
+        self.assertIn("## v0.1.4", changelog)
         self.assertIn("## v0.1.3", changelog)
         self.assertIn("## v0.1.2", changelog)
         self.assertIn("## v0.1.1", changelog)
         self.assertIn("## v0.1.0", changelog)
+        self.assertLess(changelog.index("## v0.1.4"), changelog.index("## v0.1.3"))
         self.assertLess(changelog.index("## v0.1.3"), changelog.index("## v0.1.2"))
         self.assertLess(changelog.index("## v0.1.2"), changelog.index("## v0.1.1"))
         self.assertIn("CHANGELOG.md", readme)
@@ -98,6 +100,12 @@ class SiteContractTests(unittest.TestCase):
             og_url = OG_URL_RE.findall(html)
             self.assertEqual([expected], canonical, f"{page} should declare exactly one canonical URL")
             self.assertEqual([expected], og_url, f"{page} should declare exactly one og:url")
+
+    def test_homepage_comparison_copy_is_grammatical(self):
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+
+        self.assertNotIn("Breaks you interrupts flow", homepage)
+        self.assertIn("Breaks can interrupt flow", homepage)
 
     def test_docs_do_not_point_at_machine_local_setup_files(self):
         home_downloads = "~/" + "Downloads"

@@ -2,6 +2,11 @@
 
 All notable changes to this repository are documented here.
 
+## v0.1.4 — 2026-09-27
+
+- Corrected homepage comparison copy so the rigid-timer critique reads grammatically and does not undermine the public marketing page.
+- Added repository-contract coverage to keep the corrected homepage wording from regressing.
+
 ## v0.1.3 — 2026-09-26
 
 - Added canonical URLs and matching Open Graph URLs across all public HTML pages.
