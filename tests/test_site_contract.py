@@ -76,11 +76,13 @@ class SiteContractTests(unittest.TestCase):
         readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
         workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
 
+        self.assertIn("## v0.1.5", changelog)
         self.assertIn("## v0.1.4", changelog)
         self.assertIn("## v0.1.3", changelog)
         self.assertIn("## v0.1.2", changelog)
         self.assertIn("## v0.1.1", changelog)
         self.assertIn("## v0.1.0", changelog)
+        self.assertLess(changelog.index("## v0.1.5"), changelog.index("## v0.1.4"))
         self.assertLess(changelog.index("## v0.1.4"), changelog.index("## v0.1.3"))
         self.assertLess(changelog.index("## v0.1.3"), changelog.index("## v0.1.2"))
         self.assertLess(changelog.index("## v0.1.2"), changelog.index("## v0.1.1"))
@@ -106,6 +108,25 @@ class SiteContractTests(unittest.TestCase):
 
         self.assertNotIn("Breaks you interrupts flow", homepage)
         self.assertIn("Breaks can interrupt flow", homepage)
+
+    def test_no_internal_build_process_documents_are_committed(self):
+        # BUILD_DELIVERABLES.md was an internal build-process working
+        # document (referenced an external "metaprompt" file and an
+        # unnamed "judge") that leaked into the public repo. It must not
+        # come back, and no similarly-named scratch doc should either.
+        self.assertFalse((ROOT / "BUILD_DELIVERABLES.md").exists())
+        for path in ROOT.glob("*.md"):
+            if path.name == "CHANGELOG.md":
+                continue  # allowed to document the historical removal
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("metaprompt", text.lower())
+
+    def test_demo_video_is_linked_from_both_readmes(self):
+        self.assertTrue((ROOT / "docs/demo.mp4").is_file())
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
+        self.assertIn("docs/demo.mp4", readme)
+        self.assertIn("docs/demo.mp4", readme_zh)
 
     def test_docs_do_not_point_at_machine_local_setup_files(self):
         home_downloads = "~/" + "Downloads"

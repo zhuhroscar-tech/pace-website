@@ -2,6 +2,12 @@
 
 All notable changes to this repository are documented here.
 
+## v0.1.5 — 2026-09-29
+
+- Removed `BUILD_DELIVERABLES.md`, an internal build-process working document (referencing an external "metaprompt" file and an unnamed "judge") that did not belong in a public resume-facing repository.
+- Linked the previously orphaned `docs/demo.mp4` homepage demo video from both READMEs so it is actually discoverable.
+- Added repository-contract coverage so a build-process scratch document can't be recommitted and the demo video stays linked.
+
 ## v0.1.4 — 2026-09-27
 
 - Corrected homepage comparison copy so the rigid-timer critique reads grammatically and does not undermine the public marketing page.

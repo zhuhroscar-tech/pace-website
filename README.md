@@ -6,6 +6,8 @@ The public marketing website for Pace, a study-companion project for college stu
 
 ![Pace homepage](docs/images/example-output.png)
 
+[Watch the homepage demo](docs/demo.mp4)
+
 ## Preview locally
 
 Requires a modern browser and Python 3 for the preview server and optional page generation. There are no npm dependencies or framework build steps.

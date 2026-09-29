@@ -6,6 +6,8 @@ Pace 面向大学生的学习辅助项目宣传网站。本仓库包含网站页
 
 ![Pace 首页](docs/images/example-output.png)
 
+[观看首页演示视频](docs/demo.mp4)
+
 ## 本地预览
 
 需要现代浏览器和 Python 3；Python 用于预览服务器及可选的页面生成。无需 npm 依赖或框架构建。
