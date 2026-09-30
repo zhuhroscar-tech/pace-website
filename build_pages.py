@@ -53,12 +53,12 @@ build_page(
   <section class="wrap">
     <div class="final-cta" data-reveal="0">
       <h2>Still have a question?</h2>
-      <p>Reach out directly — a real person (the founder) will answer.</p>
-      <a class="btn btn-primary btn-lg" href="mailto:REDACTED">Email us</a>
+      <p>Join the beta waitlist and we'll follow up with you directly.</p>
+      <a class="btn btn-primary btn-lg" href="waitlist.html">Join the beta</a>
     </div>
   </section>
 </main>
-""",
+"""
 )
 
 # ============================================================
@@ -149,8 +149,8 @@ build_page(
     <div class="founder-card" data-reveal="0">
       <div class="founder-avatar">O</div>
       <div>
-        <div class="founder-name">zhuhroscar-tech</div>
-        <div class="founder-role">Founder — Math &amp; Financial Engineering, a U.S. university</div>
+        <div class="founder-name">the Pace team</div>
+        <div class="founder-role">Solo student founder</div>
         <p class="founder-bio">Pace started from a simple, recurring frustration: generic study timers never matched how focus actually feels session to session. Some days a fixed 25-minute Pomodoro works fine. Other days it interrupts real flow, or fails to catch a slow drift into distraction. That mismatch was the seed for Pace.</p>
         <p class="founder-bio">The product is being designed and built at our university, with an eye toward the Skandalaris Venture Competition. Right now it's a solo effort — one person doing product, design, code, and support — which is also why the beta is intentionally simple: a small set of things done honestly, rather than a long feature list done half-way.</p>
         <span class="founder-fact">🦅 Fun fact: ex-Eagleland</span>
@@ -221,20 +221,17 @@ build_page(
           Rationale: an iframe pointed at a placeholder URL is a
           broken/dead element, which the build standard here treats as
           worse than an honest "not live yet" state. Swap this block
-          for a real signup form the moment one exists, and keep the
-          fallback email path visible for users who do not want to use
-          an embedded third-party form.
+          for a real signup form the moment one exists.
         -->
         <div class="waitlist-pending" role="status">
           <div class="waitlist-pending-icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M10 2L3 5v5c0 4.5 3 7.5 7 8.5 4-1 7-4 7-8.5V5l-7-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </div>
           <h3>Signup form is coming very soon</h3>
-          <p>We're finalizing the beta signup form right now. In the meantime, email us directly and we'll add you to the list by hand &mdash; same result, one extra step.</p>
-          <a class="btn btn-primary" href="mailto:REDACTED?subject=Pace%20beta%20waitlist">Email to join the waitlist</a>
+          <p>We're finalizing the beta signup form right now. Check back shortly for the live sign-up flow.</p>
         </div>
         <p style="font-size:12.5px;color:var(--text-faint);margin-top:16px;">
-          Prefer not to email? Check back soon &mdash; a live signup form will replace this notice as soon as it's ready.
+          A live signup form will replace this notice as soon as it's ready.
         </p>
       </div>
     </div>
@@ -248,13 +245,13 @@ build_page(
     <div class="steps">
       <div class="step" data-reveal="1">
         <div class="step-num">1</div>
-        <h4>You send the waitlist email</h4>
-        <p>A short email is enough; include your school if you want student-specific updates.</p>
+        <h4>You join the waitlist</h4>
+        <p>Sign up when the form goes live — takes about 30 seconds.</p>
       </div>
       <div class="step" data-reveal="2">
         <div class="step-num">2</div>
-        <h4>We follow up by email</h4>
-        <p>You'll hear back directly from the founder with access details and next steps.</p>
+        <h4>We follow up with access details</h4>
+        <p>You'll hear back directly from the founder with next steps.</p>
       </div>
       <div class="step" data-reveal="3">
         <div class="step-num">3</div>
